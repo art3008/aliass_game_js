@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    background-color: lightcyan;
+
+}
+
+html, body {
+    height: 100%;
+    width: 100%;
+    
+}
+
+#word {
+    
+    padding: 20px;
+    background-color: lightskyblue;
+    border-radius: 8px;
+    font-size: 20px;
+    text-align: center;
+}
+
+#btn_start {
+    /* width: 100px;
+    height: 40px; */
+    border: none;
+    cursor: pointer;
+    margin-bottom: 20px;
+    background-color: lightgreen;
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 20px;
+}
+
+#container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    flex-direction: column;
+}
+
+
+#result {
+    display: none;  
+}
+
+#btn_game {
+    display: none;
+    margin-top: 20px;
+}
+
+#btn_game button {
+    margin: 20px;
+    height: 35px;
+    width: 140px;
+    border: none;
+    background-color: lightslategray;
+    color: aliceblue;
+    font-size: 24px;
+}
+
+
+#countCorrectText {
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+#btn_repeatGame {
+    display: none;
+}
