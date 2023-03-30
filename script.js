@@ -32,6 +32,7 @@ let correctWord = []
 let incorrectWord = []
 
 
+
 let randomValue = (max) => Math.floor(Math.random() * (max - 0) + 0)
 
 function randomWords() {
@@ -53,9 +54,13 @@ word.innerHTML = arrayWord[randomValue(arrayWord.length)]
 timerText.innerHTML = newVal
 
 btnStart.addEventListener('click', ()=> {
-    
+    timerText.style.display = 'block'
     btnStart.style.display  = 'none'
     btnGame.style.display = 'flex'
+    countCorrectText.style.display = 'block'
+    
+    word.style.display = 'block'
+
     timer = setInterval(function() {
         if(val <= 0) {
             resultContainer.innerHTML = 'Последнее слово'
@@ -66,16 +71,17 @@ btnStart.addEventListener('click', ()=> {
         timerText.innerHTML = --val
         console.log(val);
     }, 1000)
+    btnCorrect.style.display = 'block'
 })
 
-countCorrectText.innerHTML = 0
+countCorrectText.innerHTML = `Количество угаданных - ${countCorrect}`
 
 btnCorrect.addEventListener('click', () => {
     
     console.log(`Угадал ${word.innerText}`);
     
     correctWord.push(word.innerText)
-    countCorrectText.innerText = ++countCorrect
+    countCorrectText.innerHTML = `Количество угаданных - ${++countCorrect}`
     word.innerHTML = randomWords()
     
     if(val < 0) {
@@ -120,8 +126,8 @@ btnRepeat.addEventListener('click', () => {
     
     btnStart.style.display = 'block'
     timerText.innerHTML = 5
-    timerText.style.display = 'block'
-    word.style.display = 'block'
+    timerText.style.display = 'none'
+    word.style.display = 'none'
     resultContainer.innerHTML = ''
     correctWord = []
     countCorrect = 0
