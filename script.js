@@ -151,7 +151,7 @@ btnCorrect.addEventListener('click', () => {
 
 btnSkip.addEventListener('click', ()=> {
 
-    console.log(`Не угадал ${word.innerText}`)
+    console.log(`Неугадал ${word.innerText}`)
     incorrectWord.push(word.innerHTML)
 
     word.innerHTML = randomWords(selectedCateg)
