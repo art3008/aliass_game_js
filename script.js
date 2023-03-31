@@ -1,21 +1,22 @@
 /*BLOCKS*/
-let word = document.getElementById('word')
-let wordContainer = document.getElementById('container_game')
-let timerText = document.getElementById('timer')
-let resultContainer = document.getElementById('result')
-let countCorrectText = document.getElementById('countCorrectText')
+let word                = document.getElementById('word')
+let wordContainer       = document.getElementById('container_game')
+let timerText           = document.getElementById('timer')
+let resultContainer     = document.getElementById('result')
+let countCorrectText    = document.getElementById('countCorrectText')
+let categoriesGame      = document.getElementById('categories')
 
 /*BUTTONS*/
-let btnStart = document.getElementById('btn_start')
-let btnGame = document.getElementById('btn_game')
-let btnCorrect = document.getElementById('btn_correct')
-let btnSkip = document.getElementById('btn_skip')
-let btnRepeat = document.getElementById('btn_repeatGame')
+let btnStart    = document.getElementById('btn_start')
+let btnGame     = document.getElementById('btn_game')
+let btnCorrect  = document.getElementById('btn_correct')
+let btnSkip     = document.getElementById('btn_skip')
+let btnRepeat   = document.getElementById('btn_repeatGame')
 
 /**/
-let countCorrect = 0
-let newVal = 5
-let val = newVal
+let countCorrect    = 0
+let newVal          = 5
+let val             = newVal
 
 let arrayWord = [
     'Клубника', 
@@ -28,8 +29,8 @@ let arrayWord = [
     'Колбаса',
 ]
 
-let correctWord = []
-let incorrectWord = []
+let correctWord     = []
+let incorrectWord   = []
 
 
 
@@ -50,28 +51,28 @@ function logGame(keyVal) {
     }
 }
 
-word.innerHTML = arrayWord[randomValue(arrayWord.length)]
+word.innerHTML      = arrayWord[randomValue(arrayWord.length)]
 timerText.innerHTML = newVal
 
 btnStart.addEventListener('click', ()=> {
-    timerText.style.display = 'block'
-    btnStart.style.display  = 'none'
-    btnGame.style.display = 'flex'
-    countCorrectText.style.display = 'block'
+    timerText.style.display         = 'block'
+    btnStart.style.display          = 'none'
+    btnGame.style.display           = 'flex'
+    countCorrectText.style.display  = 'block'
     
     word.style.display = 'block'
 
     timer = setInterval(function() {
         if(val <= 0) {
-            resultContainer.innerHTML = 'Последнее слово'
+            resultContainer.innerHTML       = 'Последнее слово'
             clearInterval(timer)
-            resultContainer.style.display = 'block'
-            timerText.style.display = 'none'
+            resultContainer.style.display   = 'block'
+            timerText.style.display         = 'none'
         }
-        timerText.innerHTML = --val
+        timerText.innerHTML     = --val
         console.log(val);
     }, 1000)
-    btnCorrect.style.display = 'block'
+    btnCorrect.style.display    = 'block'
 })
 
 countCorrectText.innerHTML = `Количество угаданных - ${countCorrect}`
@@ -89,11 +90,11 @@ btnCorrect.addEventListener('click', () => {
         console.log(logGame(correctWord));
         console.log(logGame(incorrectWord));
 
-        word.style.display    = 'none'  
-        btnGame.style.display = 'none'
-        resultContainer.innerHTML = 'Игра окончена'
-        countCorrectText.innerHTML = ''
-        btnRepeat.style.display = 'block'
+        word.style.display          = 'none'  
+        btnGame.style.display       = 'none'
+        resultContainer.innerHTML   = 'Игра окончена'
+        countCorrectText.innerHTML  = ''
+        btnRepeat.style.display     = 'block'
         
         val = newVal
     }
@@ -110,11 +111,11 @@ btnSkip.addEventListener('click', ()=> {
         console.log('Конец игры')
         console.log(logGame(correctWord))
         console.log(logGame(incorrectWord))
-        word.style.display    = 'none'
-        btnGame.style.display = 'none'
-        resultContainer.innerHTML = 'Игра окончена'
-        countCorrectText.innerHTML = ''
-        btnRepeat.style.display = 'block'
+        word.style.display          = 'none'
+        btnGame.style.display       = 'none'
+        resultContainer.innerHTML   = 'Игра окончена'
+        countCorrectText.innerHTML  = ''
+        btnRepeat.style.display     = 'block'
         
         val = newVal
         
@@ -124,13 +125,15 @@ btnSkip.addEventListener('click', ()=> {
 
 btnRepeat.addEventListener('click', () => {
     
-    btnStart.style.display = 'block'
-    timerText.innerHTML = 5
-    timerText.style.display = 'none'
-    word.style.display = 'none'
-    resultContainer.innerHTML = ''
-    correctWord = []
-    countCorrect = 0
-    incorrectWord = []
-    btnRepeat.style.display = 'none'
+    btnStart.style.display      = 'block'
+    timerText.innerHTML         = 5
+    timerText.style.display     = 'none'
+    word.style.display          = 'none'
+    resultContainer.innerHTML   = ''
+    correctWord                 = []
+    countCorrect                = 0
+    incorrectWord               = []
+    btnRepeat.style.display     = 'none'
 })
+
+
