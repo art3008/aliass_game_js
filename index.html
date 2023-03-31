@@ -11,12 +11,17 @@
     <p id="game_title">ИГРА ЭЛЛИАС</p>
     <div id="container">
 
-        <label for="categories">Выберите категорию для игры: </label>
-        <select name="categories" id="categories">
-            <option value="value_food">Еда</option>
-            <option value="value_it">IT</option>
-            <option selected value="value_english">English</option>
-        </select>
+        <form id="form_categories">
+            <label for="categories">Выберите категорию для игры: </label>
+            <select name="categories" id="categories">
+                <option disabled selected>Выберите категорию</option>
+                <option value="value_food">Еда</option>
+                <!-- <option value="value_it">IT</option> -->
+                <option value="value_english">English</option>
+            </select>
+        </form>
+
+
         
         <div id="timer"></div>
         <div id="result"></div>

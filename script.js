@@ -5,6 +5,7 @@ let timerText           = document.getElementById('timer')
 let resultContainer     = document.getElementById('result')
 let countCorrectText    = document.getElementById('countCorrectText')
 let categoriesGame      = document.getElementById('categories')
+let formCategories      = document.getElementById('form_categories')
 
 /*BUTTONS*/
 let btnStart    = document.getElementById('btn_start')
@@ -18,6 +19,7 @@ let title       = document.getElementById('game_title')
 let countCorrect    = 0
 let newVal          = 5
 let val             = newVal
+let selectedCateg   = '' 
 
 let arrayWord = [
     'Клубника', 
@@ -42,10 +44,25 @@ let arrayEnglishWord = [
 ]
 
 
+console.log(categoriesGame.value);
+
 let correctWord     = []
 let incorrectWord   = []
 
 let randomValue = (max) => Math.floor(Math.random() * (max - 0) + 0)
+
+categoriesGame.addEventListener('change', () => {
+
+    if(categoriesGame.value === 'value_food') {
+        word.innerHTML = randomWords(arrayWord)
+        selectedCateg = arrayWord
+    } else if(categoriesGame.value === 'value_english') {
+        word.innerHTML = randomWords(arrayEnglishWord)
+        selectedCateg = arrayEnglishWord
+    }
+
+})
+
 
 function randomWords(arr) {
     return arr[randomValue(arr.length)] 
@@ -64,17 +81,13 @@ function logGame(keyVal) {
 
 timerText.innerHTML = newVal
 
+
 btnStart.addEventListener('click', ()=> {
     timerText.style.display         = 'block'
     btnStart.style.display          = 'none'
     btnGame.style.display           = 'flex'
     countCorrectText.style.display  = 'block'
-
-    if(categoriesGame.value === 'value_food') {
-        word.innerHTML = arrayWord[0]
-    } else {
-        word.innerHTML = arrayEnglishWord[0]
-    }
+    formCategories.style.display    ='none'
 
     word.style.display = 'block'
 
@@ -94,13 +107,14 @@ btnStart.addEventListener('click', ()=> {
 countCorrectText.innerHTML = `Количество угаданных - ${countCorrect}`
 
 btnCorrect.addEventListener('click', () => {
-    
-    categoriesGame.value === 'value_food' ? word.innerHTML = randomWords(arrayWord)
-    : word.innerHTML = randomWords(arrayEnglishWord)
+ 
 
     console.log(`Угадал ${word.innerText}`);
     
     correctWord.push(word.innerText)
+    
+    word.innerHTML = randomWords(selectedCateg)
+
     countCorrectText.innerHTML = `Количество угаданных - ${++countCorrect}`
     
 
@@ -123,12 +137,13 @@ btnCorrect.addEventListener('click', () => {
 
 btnSkip.addEventListener('click', ()=> {
 
-    categoriesGame.value === 'value_food' ? word.innerHTML = randomWords(arrayWord)
-    : word.innerHTML = randomWords(arrayEnglishWord) 
+    
+
 
     console.log(`Не угадал ${word.innerText}`)
     incorrectWord.push(word.innerHTML)
 
+    word.innerHTML = randomWords(selectedCateg)
 
     if(val < 0) {
         console.log('Конец игры')
@@ -139,7 +154,6 @@ btnSkip.addEventListener('click', ()=> {
         resultContainer.innerHTML   = 'Игра окончена'
         countCorrectText.innerHTML  = ''
         btnRepeat.style.display     = 'block'
-        
         val = newVal
         
     }
@@ -148,13 +162,14 @@ btnSkip.addEventListener('click', ()=> {
 
 btnRepeat.addEventListener('click', () => {
     
-    btnStart.style.display      = 'block'
-    timerText.innerHTML         = 5
-    timerText.style.display     = 'none'
-    word.style.display          = 'none'
-    resultContainer.innerHTML   = ''
-    correctWord                 = []
-    countCorrect                = 0
-    incorrectWord               = []
-    btnRepeat.style.display     = 'none'
+    formCategories.style.display    = 'flex'
+    btnStart.style.display          = 'block'
+    timerText.innerHTML             = 5
+    timerText.style.display         = 'none'
+    word.style.display              = 'none'
+    resultContainer.innerHTML       = ''
+    correctWord                     = []
+    countCorrect                    = 0
+    incorrectWord                   = []
+    btnRepeat.style.display         = 'none'
 })
