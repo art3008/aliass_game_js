@@ -46,7 +46,7 @@ html, body {
     font-size: 40px;
 }
 
-.game_title {
+#game_title {
     font-size: 40px;
     text-align: center;
     margin-top: 20px;
@@ -96,4 +96,11 @@ html, body {
     background-color: skyblue;
     font-size: 20px;
 
+}
+
+#categories {
+    width: 150px;
+    height: 30px;
+    margin:  20px;
+    text-align: center;
 }

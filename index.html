@@ -8,20 +8,19 @@
     <link href="./style.css" rel="stylesheet"></link>
 </head>
 <body>
-    <p class="game_title">ИГРА ЭЛЛИАС</p>
+    <p id="game_title">ИГРА ЭЛЛИАС</p>
     <div id="container">
 
         <label for="categories">Выберите категорию для игры: </label>
         <select name="categories" id="categories">
             <option value="value_food">Еда</option>
             <option value="value_it">IT</option>
-            <option value="value_english">English</option>
+            <option selected value="value_english">English</option>
         </select>
         
         <div id="timer"></div>
-        <div id="result">
-            <!-- <p>Игра окончена</p> -->
-        </div>
+        <div id="result"></div>
+
         <div id="container_game">
             <button id="btn_start">Начать игру</button>
             <div id="word"></div>
