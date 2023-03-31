@@ -6,6 +6,7 @@ let resultContainer     = document.getElementById('result')
 let countCorrectText    = document.getElementById('countCorrectText')
 let categoriesGame      = document.getElementById('categories')
 let formCategories      = document.getElementById('form_categories')
+let formTimers          = document.getElementById('time_ForGame')
 
 /*BUTTONS*/
 let btnStart    = document.getElementById('btn_start')
@@ -17,9 +18,18 @@ let title       = document.getElementById('game_title')
 
 /**/
 let countCorrect    = 0
-let newVal          = 5
-let val             = newVal
+
+let newVal          = 0
+let val             = 0
 let selectedCateg   = '' 
+
+formTimers.addEventListener('change', ()=> {
+    newVal = parseInt(formTimers.value)
+    val = newVal
+    timerText.innerHTML = val
+})
+
+
 
 let arrayWord = [
     'Клубника', 
@@ -53,14 +63,19 @@ let randomValue = (max) => Math.floor(Math.random() * (max - 0) + 0)
 
 categoriesGame.addEventListener('change', () => {
 
-    if(categoriesGame.value === 'value_food') {
-        word.innerHTML = randomWords(arrayWord)
-        selectedCateg = arrayWord
-    } else if(categoriesGame.value === 'value_english') {
-        word.innerHTML = randomWords(arrayEnglishWord)
-        selectedCateg = arrayEnglishWord
+    switch (categoriesGame.value) {
+        case 'value_food':
+            word.innerHTML = randomWords(arrayWord)
+            selectedCateg = arrayWord                   
+            break;
+        case 'value_english':
+            word.innerHTML = randomWords(arrayEnglishWord)
+            selectedCateg = arrayEnglishWord
+            break;
+        default:
+            break;
     }
-
+    
 })
 
 
@@ -79,7 +94,7 @@ function logGame(keyVal) {
     }
 }
 
-timerText.innerHTML = newVal
+
 
 
 btnStart.addEventListener('click', ()=> {
@@ -108,7 +123,6 @@ countCorrectText.innerHTML = `Количество угаданных - ${countC
 
 btnCorrect.addEventListener('click', () => {
  
-
     console.log(`Угадал ${word.innerText}`);
     
     correctWord.push(word.innerText)
@@ -137,13 +151,14 @@ btnCorrect.addEventListener('click', () => {
 
 btnSkip.addEventListener('click', ()=> {
 
-    
-
-
     console.log(`Не угадал ${word.innerText}`)
     incorrectWord.push(word.innerHTML)
 
     word.innerHTML = randomWords(selectedCateg)
+
+
+    countCorrectText.innerHTML = `Количество угаданных - ${countCorrect}`
+
 
     if(val < 0) {
         console.log('Конец игры')
